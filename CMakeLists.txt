@@ -12,7 +12,9 @@ set(utils
         src/utils/logging.h
         src/utils/config.c
         src/utils/config.h
-        src/utils/settings.h)
+        src/utils/settings.h
+        src/utils/common.c
+        src/utils/common.h)
 
 set(objects
         src/objects/spaceship.c
