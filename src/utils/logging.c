@@ -3,16 +3,33 @@
 //
 
 #include "logging.h"
+
 #include <stdio.h>
+#include <stdarg.h>
 #include <stdlib.h>
 #include <string.h>
-#include <allegro5/allegro.h>
 
-void debug(const char *msg) {
-    fprintf(stdout, "DEBUG: %s\n", msg);
+#include "settings.h"
+
+void debug(char const *format, ...) {
+    char str[OUTPUT_BUFF_SIZE];
+
+    va_list args;
+    va_start(args, format);
+    vsnprintf(str, sizeof(str), format, args);
+    va_end(args);
+
+    fprintf(stdout, "DEBUG: %s\n", str);
 }
 
-void error(const char *msg) {
-    fprintf(stderr, "ERROR: %s - %s - %s\n", msg, strerror(errno), strerror(al_get_errno()));
+void error(char const *format, ...) {
+    char str[OUTPUT_BUFF_SIZE];
+
+    va_list args;
+    va_start(args, format);
+    vsnprintf(str, sizeof(str), format, args);
+    va_end(args);
+
+    fprintf(stderr, "ERROR: %s - %s\n", str, strerror(errno));
     exit(1);
 }

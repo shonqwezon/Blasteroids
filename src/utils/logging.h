@@ -5,8 +5,8 @@
 #ifndef BLASTEROIDS_LOGGING_H
 #define BLASTEROIDS_LOGGING_H
 
-void error(const char *msg);
+void error(char const *format, ...);
 
-void debug(const char *msg);
+void debug(char const *format, ...);
 
 #endif //BLASTEROIDS_LOGGING_H
