@@ -5,7 +5,7 @@
 #ifndef BLASTEROIDS_SETTINGS_H
 #define BLASTEROIDS_SETTINGS_H
 
-const char *CONFIG_NAME = "config.ini";
-const char *APP_NAME = "Blasteroids";
+static const char *CONFIG_NAME = "config.ini";
+static const char *APP_NAME = "Blasteroids";
 
 #endif //BLASTEROIDS_SETTINGS_H
