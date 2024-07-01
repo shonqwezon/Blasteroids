@@ -6,6 +6,7 @@
 #define BLASTEROIDS_LOGGING_H
 
 void error(const char *msg);
+
 void debug(const char *msg);
 
 #endif //BLASTEROIDS_LOGGING_H
