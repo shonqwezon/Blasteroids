@@ -17,13 +17,14 @@ typedef struct {
 } CONFIG;
 
 static void read_cfg();
+static void write_cfg();
 
-static int option(const char *section, const char *key, int def);
+static int option(const char *section, const char *key, int def, bool fWrite);
 
 CONFIG *get_cfg();
 
 CONFIG *cfg_init(const char *dirPath);
 
-void set_value();
+void cfg_free();
 
 #endif //BLASTEROIDS_CONFIG_H

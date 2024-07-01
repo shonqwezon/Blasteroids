@@ -4,7 +4,7 @@
 
 #include "eventHandler.h"
 
-#include <stdio.h>
+#include "../utils/logging.h"
 
 void run_event_handler() {
     queue = al_create_event_queue();
@@ -13,13 +13,13 @@ void run_event_handler() {
     if(event.type == ALLEGRO_EVENT_KEY_DOWN) {
         switch (event.keyboard.keycode) {
             case ALLEGRO_KEY_LEFT:
-                printf("Pressed Key left");
+                debug("Pressed Key left");
                 break;
             case ALLEGRO_KEY_RIGHT:
-                printf("Pressed Key right");
+                debug("Pressed Key right");
                 break;
             case ALLEGRO_KEY_SPACE:
-                printf("Pressed Key space");
+                debug("Pressed Key space");
                 break;
         }
     }

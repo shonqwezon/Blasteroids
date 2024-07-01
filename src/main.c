@@ -14,7 +14,7 @@ int main() {
 
     char *currentDir = al_get_current_directory();
     CONFIG *cfg = cfg_init(currentDir);
-    debug("%d", option(cfg, "system", "height", 0));
+    debug("%d", cfg->display.height);
     al_free(currentDir);
 
 //    ALLEGRO_DISPLAY * display = al_create_display(1600, 900);
@@ -23,5 +23,7 @@ int main() {
 //    }
 //    run_event_handler();
 //    al_uninstall_system();
+
+    cfg_free();
     return 0;
 }

@@ -28,9 +28,8 @@ CONFIG *cfg_init(const char *dirPath) {
     if (!cfg) {
         debug("Initiating config file");
         cfg = al_create_config();
-        read_cfg();
-        al_save_config_file(CONFIG_NAME, cfg);
     }
+    read_cfg();
     return data;
 }
 
@@ -41,15 +40,22 @@ CONFIG *get_cfg() {
 }
 
 void read_cfg() {
-    data->display.width = option("system", "width", 1600);
-    data->display.height = option("system", "height", 900);
+    data->display.width = option("system", "width", 1600, false);
+    data->display.height = option("system", "height", 900, false);
+    al_save_config_file(CONFIG_NAME, cfg);
 }
 
-int option(const char *section, const char *key, int def) {
+void write_cfg() {
+    option("system", "width", data->display.width, true);
+    option("system", "height", data->display.height, true);
+    al_save_config_file(CONFIG_NAME, cfg);
+}
+
+int option(const char *section, const char *key, int def, bool fWrite) {
     char const *value;
     value = al_get_config_value(cfg, section, key);
 
-    if (value)
+    if (value && !fWrite)
         def = strtol(value, NULL, 0);
     else {
         char str[256];
@@ -57,4 +63,10 @@ int option(const char *section, const char *key, int def) {
         al_set_config_value(cfg, section, key, str);
     }
     return def;
+}
+
+void cfg_free() {
+    write_cfg();
+    free(data);
+    al_destroy_config(cfg);
 }
