@@ -8,7 +8,7 @@
 #include <stdio.h>
 
 #include "settings.h"
-#include "logging.h"
+#include "logger.h"
 
 typedef struct ALLEGRO_CONFIG ALLEGRO_CONFIG;
 

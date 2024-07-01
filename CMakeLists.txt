@@ -8,8 +8,8 @@ set(core
         src/core/eventHandler.h)
 
 set(utils
-        src/utils/logging.c
-        src/utils/logging.h
+        src/utils/logger.c
+        src/utils/logger.h
         src/utils/config.c
         src/utils/config.h
         src/utils/settings.h

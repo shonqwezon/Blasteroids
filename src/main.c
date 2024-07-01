@@ -1,7 +1,7 @@
 #include <allegro5/allegro.h>
 
 #include "utils/config.h"
-#include "utils/logging.h"
+#include "utils/logger.h"
 #include "utils/settings.h"
 
 #include "core/eventHandler.h"

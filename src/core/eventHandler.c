@@ -4,7 +4,7 @@
 
 #include "eventHandler.h"
 
-#include "../utils/logging.h"
+#include "../utils/logger.h"
 
 void run_event_handler() {
     queue = al_create_event_queue();
