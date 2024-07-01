@@ -1,19 +1,27 @@
 #include <allegro5/allegro.h>
-#include <stdio.h>
+
+#include "utils/config.h"
+#include "utils/logging.h"
+#include "utils/settings.h"
 
 #include "core/eventHandler.h"
-#include "objects/spaceship.h"
 
 int main() {
     if(!al_init()) {
-        printf("Can't init!\n");
+        error("Can't init allegro5");
     }
-    al_set_app_name("Test");
-    ALLEGRO_DISPLAY * display = al_create_display(1600, 900);
-    if(!display) {
-        printf("Error!\n");
-    }
-    run_event_handler();
-    al_uninstall_system();
+    al_set_app_name(APP_NAME);
+
+    char *currentDir = al_get_current_directory();
+    CONFIG *cfg = cfg_init(currentDir);
+    debug("%d", option(cfg, "system", "height", 0));
+    al_free(currentDir);
+
+//    ALLEGRO_DISPLAY * display = al_create_display(1600, 900);
+//    if(!display) {
+//        printf("Error!\n");
+//    }
+//    run_event_handler();
+//    al_uninstall_system();
     return 0;
 }
