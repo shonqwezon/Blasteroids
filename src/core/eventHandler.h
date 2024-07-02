@@ -10,6 +10,8 @@
 static ALLEGRO_EVENT_QUEUE *queue;
 static ALLEGRO_EVENT event;
 
-void run_event_handler();
+void run_event_handler(ALLEGRO_DISPLAY *display);
+
+static void keyboard_handler();
 
 #endif //BLASTEROIDS_EVENTHANDLER_H
