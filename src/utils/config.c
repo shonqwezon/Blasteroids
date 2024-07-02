@@ -11,9 +11,9 @@
 #include "logger.h"
 
 static ALLEGRO_CONFIG *cfg;
-static CONFIG *data;
+static Config *data;
 
-CONFIG *cfg_init(const char *dirPath) {
+Config *cfg_init(const char *dirPath) {
     if (data) return data;
 
     char cfgPath[strlen(dirPath) + 1 + strlen(CONFIG_NAME) + 1];
@@ -22,7 +22,7 @@ CONFIG *cfg_init(const char *dirPath) {
 
     cfg = al_load_config_file(cfgPath);
 
-    data = malloc(sizeof(CONFIG));
+    data = malloc(sizeof(Config));
     if (!cfg) {
         debug("Initiating config file");
         cfg = al_create_config();
@@ -31,7 +31,7 @@ CONFIG *cfg_init(const char *dirPath) {
     return data;
 }
 
-CONFIG *get_cfg() {
+Config *get_cfg() {
     if (!data)
         error("Config hasn't been initialized");
     return data;
