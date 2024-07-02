@@ -5,7 +5,9 @@ set(CMAKE_C_STANDARD 17)
 
 set(core
         src/core/eventHandler.c
-        src/core/eventHandler.h)
+        src/core/eventHandler.h
+        src/core/render.c
+        src/core/render.h)
 
 set(utils
         src/utils/logger.c
