@@ -7,10 +7,14 @@
 
 #include <allegro5/allegro.h>
 
-typedef struct {
-    bool isRun;
-    bool keys[5];
-} EventInfo;
+#include "../utils/common.h"
+#include "../objects/objects.h"
+#include "../utils/logger.h"
+
+static Spaceship *spaceship;
+
+static ALLEGRO_EVENT_QUEUE *queue;
+static ALLEGRO_EVENT event;
 
 void *run_render(ALLEGRO_THREAD *thr, void *arg);
 
