@@ -10,8 +10,6 @@
 #include "settings.h"
 #include "logger.h"
 
-typedef struct ALLEGRO_CONFIG ALLEGRO_CONFIG;
-
 static ALLEGRO_CONFIG *cfg;
 static CONFIG *data;
 
