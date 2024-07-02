@@ -24,17 +24,17 @@ int main() {
     if (!display)
         error("Can't create display");
 
-    debug("Run event handler");
-    run_event_handler(display);
-
     EventInfo eventInfo;
-    eventInfo.isRun = true;
     ALLEGRO_THREAD *renderThread = al_create_thread(run_render, &eventInfo);
+    eventInfo.display = display;
+    debug("Main: %x", &eventInfo);
+
     al_start_thread(renderThread);
+
+    run_event_handler(&eventInfo);
+
     al_join_thread(renderThread, NULL);
     al_destroy_thread(renderThread);
-    debug("End event handler");
-
 
     al_destroy_display(display);
     cfg_free();
