@@ -7,11 +7,15 @@
 
 #include <allegro5/allegro.h>
 
+#include "../objects/spaceship.h"
+
 static ALLEGRO_EVENT_QUEUE *queue;
 static ALLEGRO_EVENT event;
 
 void run_event_handler(ALLEGRO_DISPLAY *display);
 
 static void keyboard_handler();
+
+static Spaceship *s;
 
 #endif //BLASTEROIDS_EVENTHANDLER_H
