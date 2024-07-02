@@ -24,7 +24,8 @@ set(objects
         src/objects/blast.c
         src/objects/blast.h
         src/objects/asteroid.c
-        src/objects/asteroid.h)
+        src/objects/asteroid.h
+        src/objects/objects.h)
 
 add_executable(Blasteroids
         src/main.c
