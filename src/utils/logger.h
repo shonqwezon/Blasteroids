@@ -5,7 +5,12 @@
 #ifndef BLASTEROIDS_LOGGER_H
 #define BLASTEROIDS_LOGGER_H
 
-void error(char const *format, ...);
+typedef enum {
+    PROC,
+    ABORT
+} ErrorMode;
+
+void error(ErrorMode errorMode, char const *format, ...);
 
 void debug(char const *format, ...);
 

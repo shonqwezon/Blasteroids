@@ -22,7 +22,7 @@ void debug(char const *format, ...) {
     fprintf(stdout, "DEBUG: %s\n", str);
 }
 
-void error(char const *format, ...) {
+void error(ErrorMode errorMode, char const *format, ...) {
     char str[OUTPUT_BUFF_SIZE];
 
     va_list args;
@@ -31,5 +31,6 @@ void error(char const *format, ...) {
     va_end(args);
 
     fprintf(stderr, "ERROR: %s - %s\n", str, strerror(errno));
-    exit(1);
+
+    if(errorMode == ABORT) exit(1);
 }
