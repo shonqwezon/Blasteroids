@@ -5,14 +5,14 @@
 #include "utils/logger.h"
 #include "utils/settings.h"
 
-#include "core/eventHandler.h"
-#include "core/render.h"
+#include "core/game.h"
+#include "core/game.h"
 
 int main() {
     setbuf(stdout, 0);
 
     if (!al_init())
-        error("Can't init allegro5");
+        error(ABORT, "Can't init allegro5");
 
     al_set_app_name(APP_NAME);
 
@@ -21,20 +21,12 @@ int main() {
     al_free(currentDir);
 
     ALLEGRO_DISPLAY *display = al_create_display(cfg->display.width, cfg->display.height);
-    if (!display)
-        error("Can't create display");
+    if (!display) {
+        cfg_free();
+        error(ABORT, "Can't create display");
+    }
 
-    EventInfo eventInfo;
-    ALLEGRO_THREAD *renderThread = al_create_thread(run_render, &eventInfo);
-    eventInfo.display = display;
-    debug("Main: %x", &eventInfo);
-
-    al_start_thread(renderThread);
-
-    run_event_handler(&eventInfo);
-
-    al_join_thread(renderThread, NULL);
-    al_destroy_thread(renderThread);
+    run_game(display);
 
     al_destroy_display(display);
     cfg_free();
