@@ -21,6 +21,9 @@ void draw_spaceship(const Spaceship *s) {
     al_draw_line(0, -15, 12, 13, s->color, 5.0f);
     al_draw_line(-10, 8, -3, 8, s->color, 5.0f);
     al_draw_line(10, 8, 3, 8, s->color, 5.0f);
+
+    al_identity_transform(&transform);
+    al_use_transform(&transform);
 }
 
 void init_spaceship(Spaceship *s) {

@@ -1,4 +1,5 @@
 #include <allegro5/allegro.h>
+#include <allegro5/allegro_ttf.h>
 #include <stdio.h>
 
 #include "utils/config.h"
@@ -19,9 +20,16 @@ int main() {
     Config *cfg = cfg_init(currentDir);
     al_free(currentDir);
 
+    if(!al_init_font_addon() || !al_init_ttf_addon()) {
+        cfg_free();
+        al_uninstall_system();
+        error(ABORT, "Can't init font");
+    }
+
     ALLEGRO_DISPLAY *display = al_create_display(cfg->display.width, cfg->display.height);
     if (!display) {
         cfg_free();
+        al_uninstall_system();
         error(ABORT, "Can't create display");
     }
 
