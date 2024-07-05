@@ -14,6 +14,7 @@ typedef struct {
 
 typedef struct {
     Display display;
+    unsigned int tps;
 } Config;
 
 static void read_cfg();

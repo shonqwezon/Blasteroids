@@ -33,19 +33,21 @@ Config *cfg_init(const char *dirPath) {
 
 Config *get_cfg() {
     if (!data)
-        error("Config hasn't been initialized");
+        error(ABORT, "Config hasn't been initialized");
     return data;
 }
 
 void read_cfg() {
     data->display.width = option("system", "width", 1600, false);
     data->display.height = option("system", "height", 900, false);
+    data->tps = option("game", "tps", 25, false);
     al_save_config_file(CONFIG_NAME, cfg);
 }
 
 void write_cfg() {
     option("system", "width", data->display.width, true);
     option("system", "height", data->display.height, true);
+    option("game", "tps", data->tps, true);
     al_save_config_file(CONFIG_NAME, cfg);
 }
 
