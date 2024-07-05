@@ -74,6 +74,8 @@ void run_game(ALLEGRO_DISPLAY *display) {
         }
         interpolation = (float)(getCurrentTime() + GAME_STEP - gameTick) / (float)GAME_STEP;
         display_game(interpolation);
+
+        al_rest(0.001);
     }
 
     free_modules();
@@ -98,6 +100,8 @@ void update_game() {
 
     spaceship->toX += spaceship->vx;
     spaceship->toY += spaceship->vy;
+    if(!spaceship->vx) spaceship->toX = spaceship->x;
+    if(!spaceship->vy) spaceship->toY = spaceship->y;
 }
 
 void display_game(float dt) {
