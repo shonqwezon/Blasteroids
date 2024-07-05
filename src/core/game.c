@@ -2,8 +2,9 @@
 // Created by Shon on 07.06.2024.
 //
 
-#include <allegro5/allegro_primitives.h>
 #include "game.h"
+
+#include <allegro5/allegro_primitives.h>
 
 #include "../utils/logger.h"
 #include "../utils/config.h"
@@ -27,6 +28,16 @@ bool init_modules() {
         return false;
     }
 
+    font = al_load_font("../data/font.ttf", 16, 0);
+    if (!font) {
+        error(PROC, "Can't create font");
+        return false;
+    }
+
+    frames = 0;
+    fps = 0;
+    prevTime = al_get_time();
+
     spaceship = malloc(sizeof(Spaceship));
     init_spaceship(spaceship);
     return true;
@@ -35,8 +46,8 @@ bool init_modules() {
 void free_modules() {
     debug("Finish event handler");
     al_uninstall_keyboard();
-    al_destroy_timer(timer);
     al_destroy_event_queue(queue);
+    al_destroy_font(font);
 
     free_spaceship(spaceship);
 }
@@ -73,6 +84,7 @@ void run_game(ALLEGRO_DISPLAY *display) {
             loops++;
         }
         interpolation = (float)(getCurrentTime() + GAME_STEP - gameTick) / (float)GAME_STEP;
+        calc_fps();
         display_game(interpolation);
 
         al_rest(0.001);
@@ -110,6 +122,18 @@ void display_game(float dt) {
     spaceship->y = spaceship->toY + spaceship->vy * dt;
 
     draw_spaceship(spaceship);
+    al_draw_textf(font, al_map_rgb(255, 255, 255), 10, 10, 0, "FPS: %.2f", fps);
 
     al_flip_display();
+}
+
+void calc_fps() {
+    frames++;
+
+    double currTime = al_get_time();
+    if (currTime - prevTime >= 1.0) {
+        fps = frames / (currTime - prevTime);
+        prevTime = currTime;
+        frames = 0;
+    }
 }
