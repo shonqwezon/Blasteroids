@@ -9,10 +9,4 @@
 
 char *concat(const char *str1, const char *str2);
 
-typedef struct {
-    bool isRun;
-    bool keys[ALLEGRO_KEY_MAX];
-    ALLEGRO_DISPLAY *display;
-} EventInfo;
-
 #endif //BLASTEROIDS_COMMON_H
