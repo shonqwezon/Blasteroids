@@ -6,7 +6,6 @@
 #include "utils/settings.h"
 
 #include "core/game.h"
-#include "core/game.h"
 
 int main() {
     setbuf(stdout, 0);
