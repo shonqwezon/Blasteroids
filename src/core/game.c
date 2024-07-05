@@ -27,6 +27,8 @@ bool init_modules() {
         return false;
     }
 
+    spaceship = malloc(sizeof(Spaceship));
+    init_spaceship(spaceship);
     return true;
 }
 
@@ -35,6 +37,8 @@ void free_modules() {
     al_uninstall_keyboard();
     al_destroy_timer(timer);
     al_destroy_event_queue(queue);
+
+    free_spaceship(spaceship);
 }
 
 int getCurrentTime() {
@@ -89,9 +93,19 @@ void update_game() {
         }
     }
 
+    spaceship->vx = (-keys[ALLEGRO_KEY_UP] + keys[ALLEGRO_KEY_DOWN]) * spaceship->speed;
+    spaceship->vy = (-keys[ALLEGRO_KEY_RIGHT] + keys[ALLEGRO_KEY_LEFT]) * spaceship->speed;
 
+    spaceship->toX += spaceship->vx;
+    spaceship->toY += spaceship->vy;
 }
 
 void display_game(float dt) {
+    al_clear_to_color(al_map_rgb(0, 0, 0));
+    spaceship->x = spaceship->toX + spaceship->vx * dt;
+    spaceship->y = spaceship->toY + spaceship->vy * dt;
 
+    draw_spaceship(spaceship);
+
+    al_flip_display();
 }

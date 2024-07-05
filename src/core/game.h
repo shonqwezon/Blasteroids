@@ -8,11 +8,14 @@
 #include <allegro5/allegro.h>
 
 #include "../utils/common.h"
+#include "../objects/objects.h"
 
 
 static ALLEGRO_EVENT_QUEUE *queue;
 static ALLEGRO_EVENT event;
 static ALLEGRO_TIMER *timer;
+static Spaceship *spaceship;
+
 
 static bool keys[ALLEGRO_KEY_MAX];
 static bool isRun;
