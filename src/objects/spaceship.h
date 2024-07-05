@@ -16,6 +16,10 @@ typedef struct {
     ALLEGRO_COLOR color;
 } Spaceship;
 
+void init_spaceship(Spaceship *s);
+
+void free_spaceship(Spaceship *s);
+
 void draw_spaceship(const Spaceship *s);
 
 #endif //BLASTEROIDS_SPACESHIP_H

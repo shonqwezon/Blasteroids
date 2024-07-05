@@ -18,3 +18,17 @@ void draw_spaceship(const Spaceship *s) {
     al_draw_line(-6, 4, -1, 4, s->color, 3.0f);
     al_draw_line(6, 4, 1, 4, s->color, 3.0f);
 }
+
+void init_spaceship(Spaceship *s) {
+    s = malloc(sizeof(Spaceship));
+    s->sx = 100;
+    s->sy = 100;
+    s->heading = -ALLEGRO_PI / 2;
+    s->speed = 0;
+    s->gone = 0;
+    s->color = al_map_rgb(100, 100, 50);
+}
+
+void free_spaceship(Spaceship *s) {
+    free(s);
+}
