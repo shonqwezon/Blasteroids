@@ -4,8 +4,9 @@ project(Blasteroids C)
 set(CMAKE_C_STANDARD 17)
 
 set(core
-        src/core/eventHandler.c
-        src/core/eventHandler.h)
+        src/core/game.c
+        src/core/game.h
+)
 
 set(utils
         src/utils/logger.c
@@ -22,7 +23,8 @@ set(objects
         src/objects/blast.c
         src/objects/blast.h
         src/objects/asteroid.c
-        src/objects/asteroid.h)
+        src/objects/asteroid.h
+        src/objects/objects.h)
 
 add_executable(Blasteroids
         src/main.c

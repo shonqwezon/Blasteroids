@@ -10,20 +10,21 @@
 typedef struct {
     unsigned int width;
     unsigned int height;
-} DISPLAY;
+} Display;
 
 typedef struct {
-    DISPLAY display;
-} CONFIG;
+    Display display;
+    unsigned int tps;
+} Config;
 
 static void read_cfg();
 static void write_cfg();
 
 static int option(const char *section, const char *key, int def, bool fWrite);
 
-CONFIG *get_cfg();
+Config *get_cfg();
 
-CONFIG *cfg_init(const char *dirPath);
+Config *cfg_init(const char *dirPath);
 
 void cfg_free();
 
