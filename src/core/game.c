@@ -114,6 +114,10 @@ void update_game() {
     spaceship->toY += spaceship->vy;
     if(!spaceship->vx) spaceship->toX = spaceship->x;
     if(!spaceship->vy) spaceship->toY = spaceship->y;
+
+    if(keys[ALLEGRO_KEY_SPACE]) {
+
+    }
 }
 
 void display_game(float dt) {

@@ -11,12 +11,14 @@
 #include "../utils/common.h"
 #include "../objects/objects.h"
 
+const int MAX_BLASTS = 1000;
 
 static ALLEGRO_EVENT_QUEUE *queue;
 static ALLEGRO_EVENT event;
 static ALLEGRO_FONT *font;
 
 static Spaceship *spaceship;
+static Blast *blasts[MAX_BLASTS];
 
 static int frames;
 static double fps;
